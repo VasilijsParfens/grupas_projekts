@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_picture',
     ];
 
     /**
@@ -44,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isFollowing($userId)
+    {
+        return Follower::where('user_id', $userId)
+            ->where('follower_id', $this->id) // Šeit mēs izmantojam pašreizējā lietotāja ID
+            ->exists();
+    }
+
 }
