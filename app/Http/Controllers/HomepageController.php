@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
+    // Izvadīt galvēno lapu
+    public function index()
+    {
+        return view('posts.homepage');
+    }
+    
     // Function to show 6 newest posts
     public function newestPosts()
     {
