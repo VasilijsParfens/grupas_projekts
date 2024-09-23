@@ -8,9 +8,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Middleware\CheckPostAuthor;
 
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [HomepageController::class, 'index']);
 
 Route::get('/register', [UserController::class, 'showRegisterform'])->name('register');
 Route::post('/register', [UserController::class, 'register'])->name('register');
