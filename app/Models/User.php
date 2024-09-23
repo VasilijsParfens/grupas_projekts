@@ -53,4 +53,15 @@ class User extends Authenticatable
             ->exists();
     }
 
+    // Relationships
+    public function following()
+    {
+        return $this->hasMany(Follower::class, 'follower_id');
+    }
+
+    public function followers()
+    {
+        return $this->hasMany(Follower::class, 'user_id');
+    }
+
 }
