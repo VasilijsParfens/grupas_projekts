@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function index()
-    {
-        $newestPosts = Post::latest()->take(6)->get();
-
-        return view('posts.homepage', compact('newestPosts'));
-    }
 
     public function create()
     {
