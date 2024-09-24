@@ -1,0 +1,341 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light gray background */
+    transition: background-color 0.3s, color 0.3s;
+    color: #000;
+    font-family: "Poppins";
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+input{
+    text-indent: 12px;
+}
+
+input::placeholder{
+    font-family: "Poppins";
+}
+
+.top-row {
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #95a1b0; /* Slightly darker and blue-ish */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other content */
+    transition: background-color 0.3s;
+}
+
+.logo {
+    margin-left: 20px;
+    height: 40px;
+}
+
+.search-panel {
+    width: 40%;
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.search-panel input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.top-row-right {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.login{
+    margin-right: 20px;
+}
+
+.admin{
+    margin-right: 20px;
+}
+
+.profile-icon{
+    margin-right: 20px;
+}
+
+.create-post-icon{
+    margin-right: 20px;
+}
+
+.search-container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.search-container input{
+    width: 400px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homepage-wide-container {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 300px; /* Fixed height for content blocks */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.homepage-block-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.homepage-content-slots {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: calc(100% - 30px); /* Adjust for padding and title */
+}
+
+.homepage-slot {
+    width: 14%; /* Space 5 slots evenly */
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.homepage-slot-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Maintain square aspect ratio */
+    background-color: #bbb;
+    border-radius: 5px;
+}
+
+.homepage-slot-text {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.homepage-dark-theme {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+.homepage-dark-theme .homepage-top-row {
+    background-color: #333;
+}
+
+.homepage-dark-theme .homepage-wide-container {
+    background-color: #2c2c2c;
+}
+
+.homepage-dark-theme .homepage-search-panel {
+    background-color: #444;
+    color: #f0f0f0;
+}
+
+.homepage-dark-theme .homepage-search-panel input {
+    background-color: #444;
+    color: #f0f0f0;
+}
+
+.homepage-dark-theme .homepage-slot {
+    background-color: #444;
+}
+
+.homepage-dark-theme .homepage-slot-text {
+    color: #f0f0f0;
+}
+
+
+/*Register page*/
+
+.register-container label{
+    text-align: center;
+}
+
+.register-container input{
+    width: 400px;
+    height: 50px;
+}
+
+.register-inputs{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.reg-input{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.reg-input button{
+    font-family: "Poppins";
+    font-size: 20px;
+    width: 400px;
+    height: 50px;
+}
+
+label {
+    display: inline-block; /* Corresponds to inline-block */
+    font-size: 1.125rem; /* Corresponds to text-lg (18px) */
+    margin-bottom: 0.5rem; /* Corresponds to mb-2 (8px) */
+}
+
+input[type="file"] {
+    border: 1px solid #e2e8f0; /* This corresponds to border-gray-200 */
+    border-radius: 0.25rem; /* This corresponds to rounded */
+    padding: 0.5rem; /* This corresponds to p-2 */
+    width: 100%; /* This corresponds to w-full */
+    box-sizing: border-box; /* Ensures padding does not increase the width */
+}
+
+/*Login page*/
+.login-container{
+    margin-top: 150px;
+}
+
+.login-container label{
+    text-align: center;
+}
+
+.login-container input{
+    width: 400px;
+    height: 50px;
+}
+
+.login-inputs{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.log-input{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.log-input button{
+    font-family: "Poppins";
+    font-size: 20px;
+    width: 400px;
+    height: 50px;
+}
+
+/*Create post form*/
+
+.create-container{
+    margin-top: 60px;
+}
+
+.create-container label{
+    text-align: center;
+}
+
+.create-container input{
+    width: 400px;
+    height: 50px;
+}
+
+.create-input textarea{
+    width: 400px;
+    height: 100px;
+}
+
+.create-inputs{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.create-input{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.create-input button{
+    font-family: "Poppins";
+    font-size: 20px;
+    width: 400px;
+    height: 50px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Fixed 5 columns */
+    gap: 16px; /* Adjust the gap between grid items as needed */
+    margin-top: 20px;
+}
+
+
+.grid-container-profile {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px; /* Adjust the gap between grid items as needed */
+    margin-top: 20px;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Add some space above the table */
+}
+table {
+    border-collapse: collapse; /* Ensures borders are collapsed */
+    width: auto; /* Set table width to auto for better centering */
+}
+th, td {
+    border: 1px solid #ddd; /* Add border to cells */
+    padding: 8px; /* Add some padding for better spacing */
+    min-width: 150px; /* Set minimum width for cells */
+}
+th {
+    background-color: #b7bdc4; /* Optional: Add background color to header */
+}
+tr:hover {
+    background-color: #f1f1f1; /* Optional: Add hover effect */
+}
+
+.adm-button{
+    width: 200px;
+    font-size: 32px; /* Adjust as needed */
+    padding: 10px;
+    background-color: #95a1b0;
+}
+
+.adm-button-container{
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
