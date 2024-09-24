@@ -115,7 +115,7 @@ input::placeholder{
 }
 
 .homepage-slot {
-    width: 14%; /* Space 5 slots evenly */
+    width: 14%;
     background-color: #ddd;
     border-radius: 5px;
     padding: 10px;
@@ -127,9 +127,22 @@ input::placeholder{
     width: 100%;
     height: 0;
     padding-bottom: 100%; /* Maintain square aspect ratio */
-    background-color: #bbb;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.homepage-slot-image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire area while maintaining aspect ratio */
+    transform: translate(-50%, -50%); /* Center the image */
     border-radius: 5px;
 }
+
 
 .homepage-slot-text {
     margin-top: 10px;
