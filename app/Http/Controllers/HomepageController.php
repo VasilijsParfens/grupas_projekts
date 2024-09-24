@@ -9,7 +9,13 @@ class HomepageController extends Controller
     // Izvadīt galvēno lapu
     public function index()
     {
-        return view('posts.homepage');
+        // Fetch the 6 newest posts, ordered by the latest 'created_at' timestamp
+        $newestPosts = Post::orderBy('created_at', 'desc')
+                                       ->take(6)
+                                       ->get();
+    
+        // Use compact to pass the $newestPosts to the view
+        return view('posts.homepage', compact('newestPosts'));
     }
     
     // Function to show 6 newest posts
