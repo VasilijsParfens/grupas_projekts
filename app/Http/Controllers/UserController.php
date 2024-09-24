@@ -79,9 +79,20 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function destroy(User $user) {
-        $user->delete();
-        return redirect('/admin/users')->with('message', 'User deleted successfully');
-    }
+    public function destroy($id) {
+        $user = User::findOrFail($id);
 
+        if (auth()->user()->id !== $user->id && !auth()->user()->is_admin){
+            return redirect()->route('/')->with('error', 'Unauthorized action.');
+        }
+
+        if ($user->profile_picture) {
+            $profilePicturePath = public_path('profile_pictures/' . $user->profile_picture);
+            if (file_exists($profilePicturePath)) {
+                unlink($profilePicturePath);
+            }
+    }
+        $user->delete();
+
+        return redirect()->route('/');
 }
