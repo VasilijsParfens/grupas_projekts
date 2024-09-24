@@ -53,15 +53,16 @@ class User extends Authenticatable
             ->exists();
     }
 
-    // Relationships
-    public function following()
-    {
-        return $this->hasMany(Follower::class, 'follower_id');
-    }
-
+    // Relationship to get followers of the user
     public function followers()
     {
-        return $this->hasMany(Follower::class, 'user_id');
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    // Relationship to get users that the authenticated user follows
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
 }
