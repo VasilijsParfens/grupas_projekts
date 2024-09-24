@@ -124,7 +124,7 @@
                     @foreach($newestPosts as $post)
                     <div class="homepage-slot">
                         <div class="homepage-slot-image"><img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image"></div>
-                        <div class="homepage-slot-text">Slot 1</div>
+                        <div class="homepage-slot-text">{{ $post->title }}</div>
                     </div>
                     @endforeach
             @else
