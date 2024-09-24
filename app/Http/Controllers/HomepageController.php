@@ -16,7 +16,7 @@ class HomepageController extends Controller
 
         // Fetch the 6 popular posts, ordered by likes
 
-        // Fetch the 6 trending posts, ordered by likes
+        // Fetch the 6 trending posts, ordered by likes and date
 
         // Fetch the 6 following posts, posts from users that authentficated user follows
         
