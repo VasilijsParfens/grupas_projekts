@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
-use App\Models\Likes;
-use App\Models\Files;
+use App\Models\Like;
+use App\Models\File;
 
 class AdminController extends Controller
 {
