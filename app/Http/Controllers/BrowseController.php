@@ -11,13 +11,18 @@ class BrowseController extends Controller
     // Jaunākās publikācijas
     public function newestPosts()
     {
-        // Kodu raksti šeit
+        $newestPosts = Post::orderBy('created_at', 'desc')
+                           ->get();
+        return view('posts.recent', compact('newestPosts'));
     }
 
     // Popularākās publikācijas pēc vērtējumu (Likes) skaita
     public function popularPosts()
     {
-        // Kodu raksti šeit
+        $popularPosts = Post::withCount('likes')
+                            ->orderBy('likes_count', 'desc')
+                            ->get();
+        return view('posts.popular', compact( 'popularPosts'));
     }
 
     // Publikācijas no lietotājiem, kurus abonē autentificētais lietotājs
@@ -29,6 +34,9 @@ class BrowseController extends Controller
     // Publikācijas, kas ir tendencēs pēc vērtējumiem un datuma
     public function trendingPosts()
     {
-        // Kodu raksti šeit
+        $trendingPosts = Post::withCount('likes')
+                             ->orderByRaw('likes_count + (DATEDIFF(NOW(), created_at) * 0.1) DESC')
+                             ->get();
+        return view('posts.trending', compact('trendingPosts'));
     }
 }
