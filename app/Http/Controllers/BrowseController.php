@@ -13,7 +13,7 @@ class BrowseController extends Controller
     {
         $newestPosts = Post::orderBy('created_at', 'desc')
                            ->get();
-        return view('posts.recent', compact('newestPosts'));
+        return view('posts.new', compact('newestPosts'));
     }
 
     // Popularākās publikācijas pēc vērtējumu (Likes) skaita
