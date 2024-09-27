@@ -9,21 +9,64 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     // Izveidot komentāru publikācijai
-    public function storeComment()
+    public function storeComment(Request $request, $postId)
     {
-        // Kodu raksti šeit
+         // Validate the request
+        $request->validate([
+            'body' => 'required|string|max:500',
+        ]);
+
+        // Check if the post exists
+        $post = Post::findOrFail($postId);
+
+        // Create a new comment
+        $comment = new Comment();
+        $comment->user_id = Auth::id(); // Assign the currently authenticated user
+        $comment->post_id = $post->id; // Set the related post ID
+        $comment->body = $request->input('body');
+        $comment->save();
+
+        return response()->json(['message' => 'Comment created successfully!', 'comment' => $comment]);
     }
 
     // Rediģēt komentāru publikācijai (tikai komentāra autoram)
-    public function updateComment()
+    public function updateComment(Request $request, $commentId)
     {
-        // Kodu raksti šeit
+        // Validate the request
+        $request->validate([
+            'body' => 'required|string|max:500',
+        ]);
+
+        // Find the comment
+        $comment = Comment::findOrFail($commentId);
+
+        // Check if the authenticated user is the author of the comment
+        if (Auth::id() !== $comment->user_id) {
+            return response()->json(['message' => 'You are not authorized to update this comment.'], 403);
+        }
+
+        // Update the comment
+        $comment->body = $request->input('body');
+        $comment->save();
+
+        return response()->json(['message' => 'Comment updated successfully!', 'comment' => $comment]);
     }
 
     // Izdzēst komentāru publikācijai (tikai komentāra autoram)
-    public function destroyComment()
+    public function destroyComment($commentId)
     {
-        // Kodu raksti šeit
+        // Find the comment
+        $comment = Comment::findOrFail($commentId);
+
+        // Check if the authenticated user is the author of the comment
+        if (Auth::id() !== $comment->user_id) {
+            return response()->json(['message' => 'You are not authorized to delete this comment.'], 403);
+        }
+
+        // Delete the comment
+        $comment->delete();
+
+        return response()->json(['message' => 'Comment deleted successfully!']);
     }
 }
 
