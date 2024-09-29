@@ -34,6 +34,8 @@ Route::get('/admin/posts', [AdminController::class, 'showPosts'])->name('admin.p
 Route::get('/admin/comments', [AdminController::class, 'showComments'])->name('admin.comments');
 Route::get('/admin/stats', [AdminController::class, 'showStats'])->name('admin.stats');
 
+Route::get('/profile/{userId}', [ProfileController::class, 'showInfo'])->name('profile.show');
+
 Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware(CheckPostAuthor::class);
 Route::put('posts/{id}', [PostController::class, 'update'])->name('posts.update')->middleware(CheckPostAuthor::class);
 
