@@ -3,7 +3,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0; /* Light gray background */
     transition: background-color 0.3s, color 0.3s;
-    color: #000;
     font-family: "Poppins";
 }
 
@@ -532,4 +531,241 @@ tr:hover {
     margin-top: 10px;
     font-size: 14px;
     color: #333;
+}
+
+
+/*Post page*/
+
+.post-page-container {
+    background-color: var(--secondary-color);
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 100px auto;
+}
+
+.post-page-top-section {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.post-page-cover-image {
+    width: 300px;
+    height: 300px;
+    background-color: #e0e0e0;
+    margin-right: 20px;
+}
+
+.post-page-details {
+    flex-grow: 1;
+}
+
+.post-page-profile-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.post-page-profile-info img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.post-page-metadata {
+    color: var(--meta-text-color);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.post-page-metadata span {
+    margin-right: 15px;
+}
+
+.post-page-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.post-page-like-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-page-files {
+    background-color: var(--background-color);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    max-height: 150px;
+    overflow-y: scroll;
+    color: var(--text-color);
+}
+
+.post-page-files .post-page-file {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post-page-comments {
+    margin-top: 20px;
+    background-color: var(--background-color);
+    padding: 15px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    color: var(--text-color);
+}
+
+.post-page-comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.post-page-comment img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-page-comment-text {
+    flex-grow: 1;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--text-color);
+}
+
+.post-page-comment-actions {
+    color: var(--meta-text-color);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.post-page-comment-actions span {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.post-page-comment-form {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-page-comment-form h3 {
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.post-page-comment-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.post-page-comment-form-container textarea {
+    border: 1px solid var(--meta-text-color);
+    border-radius: 5px;
+    padding: 10px;
+    resize: none;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: border 0.3s;
+}
+
+.post-page-comment-form-container textarea:focus {
+    border: 1px solid var(--primary-color);
+    outline: none;
+}
+
+.post-page-comment-form-container button {
+    margin-top: 10px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-page-edit-comment-form {
+    display: none;
+    margin-top: 10px;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.post-page-edit-comment-form input {
+    border: 1px solid var(--meta-text-color);
+    border-radius: 5px;
+    padding: 5px;
+    width: calc(100% - 10px);
+    font-size: 14px;
+    color: var(--text-color);
+    transition: border 0.3s;
+}
+
+.post-page-edit-comment-form input:focus {
+    border: 1px solid var(--primary-color);
+    outline: none;
+}
+
+.post-page-edit-button, .post-page-delete-button {
+    cursor: pointer;
+    font-size: 14px; /* Ensures both buttons have the same font size */
+    padding: 5px 10px; /* Add some padding for better appearance */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Add rounded corners */
+}
+
+.post-page-edit-button {
+    color: var(--button-text-color); /* Use white text color */
+    background-color: var(--button-bg-color); /* Set background color */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 5px 10px; /* Add some padding for better appearance */
+    transition: background-color 0.3s; /* Add transition for hover effect */
+}
+
+.post-page-delete-button {
+    color: white; /* Text color */
+    background-color: red; /* Red background */
+    margin-left: 10px;
+}
+
+.post-page-delete-button:hover {
+    background-color: darkred; /* Darker red on hover */
+}
+
+:root {
+    --background-color: #f0f0f0;
+    --text-color: #000;
+    --primary-color: #4a90e2;
+    --secondary-color: #fff;
+    --meta-text-color: gray;
+    --button-bg-color: #007bff;
+    --button-text-color: white;
 }
