@@ -171,13 +171,16 @@ private function deleteDirectory($dir)
 }
 
 
-    public function show($id)
+    public function show(Post $post)
     {
-        // Find the post by its ID or throw a 404 error if not found
-        $post = Post::with(['user', 'files'])->findOrFail($id);
-
-        // Pass the post data to the view
-        return view('posts.show', compact('post'));
+        $author = $post->user;
+        $comments = $post->comments()->with('user')->get();
+        $files = $post->files;
+        $likesCount = $post->likes()->count(); // Count likes
+        $commentsCount = $post->comments()->count(); // Count comments
+        $isLikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
+    
+        return view('posts.show', compact('post', 'author', 'comments', 'files', 'likesCount', 'commentsCount', 'isLikedByUser'));
     }
 
 }
