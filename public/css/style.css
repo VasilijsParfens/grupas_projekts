@@ -144,9 +144,13 @@ input::placeholder{
 
 
 .homepage-slot-text {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
+    margin-top: 5px;
+    display: block; /* Ensures it behaves like a block element */
+    max-height: 3em; /* Adjust this value based on desired height */
+    overflow: hidden; /* Hides any overflow content */
+    text-overflow: ellipsis; /* Adds ellipsis for overflowing text */
+    white-space: nowrap; /* Prevents text from wrapping to a new line */
+    font-size: 1em; /* Adjust font size as needed */
 }
 
 .homepage-dark-theme {
@@ -454,9 +458,13 @@ tr:hover {
 }
 
 .profile-slot-text {
-    margin-top: 10px;
-    font-size: 16px; /* Increased font size */
-    color: #333;
+    margin-top: 5px;
+    display: block; /* Ensures it behaves like a block element */
+    max-height: 3em; /* Adjust this value based on desired height */
+    overflow: hidden; /* Hides any overflow content */
+    text-overflow: ellipsis; /* Adds ellipsis for overflowing text */
+    white-space: nowrap; /* Prevents text from wrapping to a new line */
+    font-size: 1em; /* Adjust font size as needed */
 }
 
 .dark-theme-switch {
@@ -528,9 +536,13 @@ tr:hover {
 
 
 .browse-slot-text {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
+    margin-top: 5px;
+    display: block; /* Ensures it behaves like a block element */
+    max-height: 3em; /* Adjust this value based on desired height */
+    overflow: hidden; /* Hides any overflow content */
+    text-overflow: ellipsis; /* Adds ellipsis for overflowing text */
+    white-space: nowrap; /* Prevents text from wrapping to a new line */
+    font-size: 1em; /* Adjust font size as needed */
 }
 
 
