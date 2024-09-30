@@ -27,7 +27,7 @@
                 </a>
             @endauth
             @auth
-                <a href="#" title="Account" class="profile-icon">
+                <a href="{{ route('profile.show', auth()->user()->id) }}" title="Account" class="profile-icon">
                     <i class="fa-solid fa-user"></i>
                     <span style="margin-left: 5px;">Profile</span>
                 </a>
