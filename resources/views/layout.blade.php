@@ -27,7 +27,7 @@
                 </a>
             @endauth
             @auth
-                <a href="{{ route('profile.show', auth()->user()->id) }}" title="Account" class="profile-icon">
+                <a href="#" title="Account" class="profile-icon">
                     <i class="fa-solid fa-user"></i>
                     <span style="margin-left: 5px;">Profile</span>
                 </a>
@@ -56,18 +56,26 @@
     </div>
     @yield('content')
     <script>
-        // Toggle dark theme and logo
-        const theme_picker = document.getElementById('darkThemeSwitch');
-        theme_picker.addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            const logo = document.getElementById('logo');
+        const darkThemeSwitch = document.getElementById('darkThemeSwitch');
+        const body = document.body;
+
+        darkThemeSwitch.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+			const logo = document.getElementById('logo');
             if (document.body.classList.contains('dark-theme')) {
                 logo.src = 'logo-dark.png'; // Change to dark theme logo
-				theme_picker.src = 'light-theme-icon.png';
+				darkThemeSwitch.src = 'light-theme-icon.png';
             } else {
                 logo.src = 'logo.png'; // Change back to light theme logo
-				theme_picker.src = 'dark-theme-icon.png';
+				darkThemeSwitch.src = 'dark-theme-icon.png';
             }
         });
+    </script>
+
+    <script>
+        function toggleEditForm(commentId) {
+            const editForm = document.querySelector(`#comment-${commentId} .post-page-edit-comment-form`);
+            editForm.style.display = (editForm.style.display === 'block') ? 'none' : 'block';
+        }
     </script>
 </body>
