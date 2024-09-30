@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\HomepageController;
@@ -35,6 +36,11 @@ Route::get('/admin/comments', [AdminController::class, 'showComments'])->name('a
 Route::get('/admin/stats', [AdminController::class, 'showStats'])->name('admin.stats');
 
 Route::get('/profile/{userId}', [ProfileController::class, 'showInfo'])->name('profile.show');
+
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::post('/posts/{postId}/comments', [CommentController::class, 'storeComment'])->name('comments.store');
+Route::put('/comments/{commentId}', [CommentController::class, 'updateComment'])->name('comments.update');
+Route::delete('/comments/{commentId}', [CommentController::class, 'destroyComment'])->name('comments.destroy');
 
 Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware(CheckPostAuthor::class);
 Route::put('posts/{id}', [PostController::class, 'update'])->name('posts.update')->middleware(CheckPostAuthor::class);
