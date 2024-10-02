@@ -8,7 +8,7 @@
         <h2>{{ $user['name'] }}</h2>
         <div class="profile-stats">
             <div>{{ $followersCount }} followers</div>
-            @if (Auth::check())
+            @if (Auth::check() && Auth::id() !== $user['id']) <!-- Only show follow/unfollow if not viewing own profile -->
                 @if (Auth::user()->isFollowing($user->id))
                     <!-- Unfollow Form -->
                     <form action="{{ route('unfollow', $user['id']) }}" method="POST" style="display:inline;">
@@ -22,7 +22,7 @@
                         <button type="submit" class="btn btn-primary">Follow</button>
                     </form>
                 @endif
-            @else
+            @elseif (Auth::guest())
                 <p>Please <a href="{{ route('login') }}">login</a> to follow or unfollow users.</p>
             @endif
         </div>
@@ -37,10 +37,15 @@
             <p>This user has no posts.</p>
         @else
             @foreach($posts as $post)
-                <div class="profile-slot">
-                    <div class="profile-slot-image"><img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image"></div> <!-- Assuming your Post model has an image_url field -->
+            <div class="profile-slot">
+                <!-- Keep slot design intact and make it clickable with CSS -->
+                <a href="{{ route('posts.show', $post->id) }}" class="slot-link">
+                    <div class="profile-slot-image">
+                        <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image">
+                    </div>
                     <div class="profile-slot-text">{{ $post->title }}</div>
-                </div>
+                </a>
+            </div>
             @endforeach
         @endif
     </div>
