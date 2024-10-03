@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comments;
 use App\Models\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,6 +21,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'files' => 'array|max:5',
             'files.*' => 'file|max:5120', // Maximum file size 5MB
         ]);
 
@@ -90,7 +92,7 @@ class PostController extends Controller
 
             // Store the new cover image
             $coverImage = $request->file('cover_image');
-            $coverImageName = $post->id . '_' . time() . '.' . $coverImage->getClientOriginalExtension();
+            $coverImageName = 'cover_' . time() . '.' . $coverImage->getClientOriginalExtension();
             $coverImage->move(public_path('cover_images'), $coverImageName);
             $post->cover_image = $coverImageName;
             $post->save();
@@ -171,16 +173,16 @@ private function deleteDirectory($dir)
 }
 
 
-    public function show(Post $post)
-    {
-        $author = $post->user;
-        $comments = $post->comments()->with('user')->get();
-        $files = $post->files;
-        $likesCount = $post->likes()->count(); // Count likes
-        $commentsCount = $post->comments()->count(); // Count comments
-        $isLikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
-    
-        return view('posts.show', compact('post', 'author', 'comments', 'files', 'likesCount', 'commentsCount', 'isLikedByUser'));
-    }
+public function show(Post $post)
+{
+    $author = $post->user;
+    $comments = $post->comments()->with('user')->get();
+    $files = $post->files;
+    $likesCount = $post->likes()->count(); // Count likes
+    $commentsCount = $post->comments()->count(); // Count comments
+    $isLikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
+
+    return view('posts.show', compact('post', 'author', 'comments', 'files', 'likesCount', 'commentsCount', 'isLikedByUser'));
+}
 
 }
