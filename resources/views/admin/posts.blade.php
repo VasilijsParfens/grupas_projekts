@@ -17,16 +17,24 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Created At</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($posts as $post)
                     <tr>
                         <td>{{ $post->id }}</td>
-                        <td>{{ $post->user_id }}</td> <!-- Display the user ID -->
+                        <td>{{ $post->user_id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->description }}</td>
                         <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>
+                        <td>
+                            <form action="{{ route('admin.posts.delete', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -34,3 +42,4 @@
     </div>
 </div>
 @endsection
+
