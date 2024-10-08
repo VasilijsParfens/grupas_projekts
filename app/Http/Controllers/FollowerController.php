@@ -15,12 +15,12 @@ class FollowerController extends Controller
 
         // Pārbaudām, vai lietotājs cenšas abonēt sevi
         if ($userId == $followedUserId) {
-            return view('/');
+            return redirect()->back();
         }
 
         // Pārbaudām, vai jau tiek veikta abonēšana
         if (Follower::where('user_id', $followedUserId)->where('follower_id', $userId)->exists()) {
-            return view('/');
+            return redirect()->back();
         }
 
         // Pievienojam jaunu abonēšanas ierakstu
@@ -29,7 +29,7 @@ class FollowerController extends Controller
             'follower_id' => $userId, // Lietotājs, kurš abonē
         ]);
 
-        return view('/');
+        return redirect()->back();
     }
     public function unfollow($followedUserId)
     {
@@ -39,13 +39,13 @@ class FollowerController extends Controller
         $follower = Follower::where('user_id', $followedUserId)->where('follower_id', $userId)->first();
 
         if (!$follower) {
-            return view('/');
+            return redirect()->back();
         }
 
         // Dzēšam ierakstu
         $follower->delete();
 
-        return view('/');
+        return redirect()->back();
     }
 
 
