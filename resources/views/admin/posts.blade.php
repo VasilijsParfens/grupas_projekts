@@ -24,9 +24,9 @@
                 @foreach ($posts as $post)
                     <tr>
                         <td>{{ $post->id }}</td>
-                        <td>{{ $post->user_id }}</td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->description }}</td>
+                        <td>{{ $post->user_id }}</td> <!-- Display the user ID -->
+                        <td style="max-width: 300px; word-wrap: break-word;">{{ $post->title }}</td>
+                        <td style="max-width: 500px; word-wrap: break-word;">{{ $post->description }}</td>
                         <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>
                         <td>
                             <form action="{{ route('admin.posts.delete', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
@@ -42,4 +42,3 @@
     </div>
 </div>
 @endsection
-
