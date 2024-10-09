@@ -1,59 +1,45 @@
 <?php
 
-class LikeController {
-    private $db;
+namespace App\Http\Controllers;
 
-    public function __construct($database) {
-        $this->db = $database;
-    }
+use App\Models\Like;
+use Illuminate\Http\Request;
 
+class LikeController extends Controller {
     // Funkcija, kas piešķir vērtējumu publikācijai
-    public function like($postId, $userId) {
+    public function like(Request $request, $postId) {
+        $userId = $request->user()->id;
+
         // Pārbauda, vai lietotājs jau ir novērtējis šo publikāciju
-        $query = "SELECT * FROM likes WHERE post_id = ? AND user_id = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$postId, $userId]);
-        
-        if ($stmt->rowCount() > 0) {
-            return "Jūs jau esat novērtējis šo publikāciju.";
+        $likeExists = Like::where('post_id', $postId)->where('user_id', $userId)->exists();
+
+        if ($likeExists) {
+            return response()->json(['message' => 'Jūs jau esat novērtējis šo publikāciju.'], 400);
         }
 
         // Ievieto jaunu ierakstu par like
-        $query = "INSERT INTO likes (post_id, user_id) VALUES (?, ?)";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$postId, $userId]);
+        Like::create([
+            'post_id' => $postId,
+            'user_id' => $userId,
+        ]);
 
-        return "Jūs veiksmīgi novērtējāt publikāciju.";
+        return response()->json(['message' => 'Jūs veiksmīgi novērtējāt publikāciju.'], 200);
     }
 
     // Funkcija, kas noņem vērtējumu publikācijai
-    public function unlike($postId, $userId) {
+    public function unlike(Request $request, $postId) {
+        $userId = $request->user()->id;
+
         // Pārbauda, vai lietotājs ir novērtējis šo publikāciju
-        $query = "SELECT * FROM likes WHERE post_id = ? AND user_id = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$postId, $userId]);
-        
-        if ($stmt->rowCount() === 0) {
-            return "Jūs neesat novērtējis šo publikāciju.";
+        $like = Like::where('post_id', $postId)->where('user_id', $userId)->first();
+
+        if (!$like) {
+            return response()->json(['message' => 'Jūs neesat novērtējis šo publikāciju.'], 400);
         }
 
         // Dzēš ierakstu par like
-        $query = "DELETE FROM likes WHERE post_id = ? AND user_id = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$postId, $userId]);
+        $like->delete();
 
-        return "Jūs veiksmīgi noņēmāt savu vērtējumu no publikācijas.";
+        return response()->json(['message' => 'Jūs veiksmīgi noņēmāt savu vērtējumu no publikācijas.'], 200);
     }
 }
-
-// Lietojums
-// $db = new PDO('mysql:host=localhost;dbname=your_database', 'username', 'password');
-// $likeController = new LikeController($db);
-
-// $response = $likeController->like(1, 123); // Piemērs, kā piešķirt vērtējumu
-// echo $response;
-
-// $response = $likeController->unlike(1, 123); // Piemērs, kā noņemt vērtējumu
-// echo $response;
-
-?>
