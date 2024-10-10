@@ -12,7 +12,7 @@ class CommentController extends Controller
     // Izveidot komentāru publikācijai
     public function storeComment(Request $request, $postId)
     {
-         // Validate the request
+        // Validate the request
         $request->validate([
             'body' => 'required|string|max:500',
         ]);
@@ -53,14 +53,14 @@ class CommentController extends Controller
         return response()->json(['message' => 'Comment updated successfully!', 'comment' => $comment]);
     }
 
-    // Izdzēst komentāru publikācijai (tikai komentāra autoram)
+    // Izdzēst komentāru publikācijai (tikai komentāra autoram vai administratoram)
     public function destroyComment($commentId)
     {
         // Find the comment
         $comment = Comment::findOrFail($commentId);
 
-        // Check if the authenticated user is the author of the comment
-        if (Auth::id() !== $comment->user_id) {
+        // Check if the authenticated user is either the author or an admin
+        if (Auth::id() !== $comment->user_id && !Auth::user()->is_admin) {
             return response()->json(['message' => 'You are not authorized to delete this comment.'], 403);
         }
 
@@ -70,4 +70,5 @@ class CommentController extends Controller
         return response()->json(['message' => 'Comment deleted successfully!']);
     }
 }
+
 

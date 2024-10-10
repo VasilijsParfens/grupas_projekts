@@ -3,7 +3,7 @@
     <div class="post-page-container">
         <div class="post-page-top-section">
             <div class="post-page-cover-image">
-                <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image" style="width: 100%; height: 100%;">
+                <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image" style="width: 300px; height: 300px;">
             </div>
 
             <div class="post-page-details">
@@ -21,7 +21,11 @@
                 <div class="post-page-description">
                     {{ $post->description }}
                 </div>
-                <button class="post-page-like-button">{{ $post->isLikedByUser ? 'Unlike' : 'Like' }} Post</button>
+
+                <!-- Like Button Visible to Authenticated Users Only -->
+                @if(Auth::check())
+                    <button class="post-page-like-button">{{ $post->isLikedByUser ? 'Unlike' : 'Like' }} Post</button>
+                @endif
             </div>
         </div>
 
@@ -38,14 +42,17 @@
             </div>
         @endif
 
-        <div class="post-page-comment-form">
-            <h3>Add a Comment:</h3>
-            <form id="commentForm" action="{{ route('comments.store', $post->id) }}" method="POST" class="post-page-comment-form-container">
-                @csrf
-                <textarea name="body" rows="3" placeholder="Write your comment..." required></textarea>
-                <button type="submit">Post Comment</button>
-            </form>
-        </div>
+        <!-- Comment Form Visible to Authenticated Users Only -->
+        @if(Auth::check())
+            <div class="post-page-comment-form">
+                <h3>Add a Comment:</h3>
+                <form id="commentForm" action="{{ route('comments.store', $post->id) }}" method="POST" class="post-page-comment-form-container">
+                    @csrf
+                    <textarea name="body" rows="3" placeholder="Write your comment..." required></textarea>
+                    <button type="submit">Post Comment</button>
+                </form>
+            </div>
+        @endif
 
         <!-- Display Comments Section -->
         <div class="post-page-comments">
@@ -77,3 +84,4 @@
             @endforeach
         </div>
 @endsection
+
