@@ -24,7 +24,12 @@
 
                 <!-- Like Button Visible to Authenticated Users Only -->
                 @if(Auth::check())
-                    <button class="post-page-like-button">{{ $post->isLikedByUser ? 'Unlike' : 'Like' }} Post</button>
+                    <form action="{{ $isLikedByUser ? route('posts.unlike', $post->id) : route('posts.like', $post->id) }}" method="POST" class="post-page-like-form">
+                        @csrf
+                        <button type="submit" class="post-page-like-button">
+                            {{ $isLikedByUser ? 'Unlike' : 'Like' }} Post
+                        </button>
+                    </form>
                 @endif
             </div>
         </div>
