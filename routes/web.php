@@ -34,6 +34,9 @@ Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.u
 Route::get('/admin/posts', [AdminController::class, 'showPosts'])->name('admin.posts');
 Route::get('/admin/comments', [AdminController::class, 'showComments'])->name('admin.comments');
 Route::get('/admin/stats', [AdminController::class, 'showStats'])->name('admin.stats');
+Route::delete('/admin/comments/{comment}', [CommentController::class, 'destroyComment'])->name('admin.comments.delete');
+Route::delete('/admin/posts/{post}', [PostController::class, 'destroy'])->name('admin.posts.delete');
+Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.delete');
 
 Route::get('/profile/{userId}', [ProfileController::class, 'showInfo'])->name('profile.show');
 
@@ -41,6 +44,8 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 Route::post('/posts/{postId}/comments', [CommentController::class, 'storeComment'])->name('comments.store');
 Route::put('/comments/{commentId}', [CommentController::class, 'updateComment'])->name('comments.update');
 Route::delete('/comments/{commentId}', [CommentController::class, 'destroyComment'])->name('comments.destroy');
+Route::post('/posts/{post}/like', [LikeController::class, 'like'])->name('posts.like');
+Route::post('/posts/{post}/unlike', [LikeController::class, 'unlike'])->name('posts.unlike');
 
 Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware(CheckPostAuthor::class);
 Route::put('posts/{id}', [PostController::class, 'update'])->name('posts.update')->middleware(CheckPostAuthor::class);
