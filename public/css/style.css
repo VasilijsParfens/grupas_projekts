@@ -187,6 +187,10 @@ input::placeholder{
 
 /*Register page*/
 
+.register-container{
+    margin-top: 50px;
+}
+
 .register-container label{
     text-align: center;
 }
@@ -200,7 +204,7 @@ input::placeholder{
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
 }
 
 .reg-input{
