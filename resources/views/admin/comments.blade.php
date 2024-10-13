@@ -14,6 +14,7 @@
                 <tr>
                     <th>ID</th>
                     <th>User ID</th>
+                    <th>Post ID</th>
                     <th>Body</th>
                     <th>Created At</th>
                     <th>Actions</th>
