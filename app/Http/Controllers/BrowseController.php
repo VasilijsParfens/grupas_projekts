@@ -32,7 +32,7 @@ class BrowseController extends Controller
         $authUser = Auth::user();
 
         // Fetch IDs of users that the authenticated user is following
-        $followingUserIds = $authUser->follows()->pluck('user_id');
+        $followingUserIds = $authUser->following()->pluck('user_id');
 
         // Fetch the 6 most recent posts from followed users
         $posts = Post::whereIn('user_id', $followingUserIds)
