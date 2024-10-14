@@ -27,10 +27,20 @@ class HomepageController extends Controller
                              ->orderByRaw('likes_count + (DATEDIFF(NOW(), created_at) * 0.1) DESC')
                              ->take(6)
                              ->get();
-        // Following
+        // Get the authenticated user
+        $authUser = Auth::user();
+
+        // Fetch IDs of users that the authenticated user is following
+        $followingUserIds = $authUser->follows()->pluck('user_id');
+
+        // Fetch the 6 most recent posts from followed users
+        $followingPosts = Post::whereIn('user_id', $followingUserIds)
+            ->orderBy('created_at', 'desc')  // Order by the most recent
+            ->take(6)  // Limit to 6 posts
+            ->get();
         
         // Use compact to pass the posts to the view
-        return view('posts.homepage', compact('newestPosts', 'popularPosts', 'trendingPosts'));
+        return view('posts.homepage', compact('newestPosts', 'popularPosts', 'trendingPosts', '$followingPosts'));
     }
 
     
