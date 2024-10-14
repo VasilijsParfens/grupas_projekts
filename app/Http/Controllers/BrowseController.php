@@ -37,7 +37,6 @@ class BrowseController extends Controller
         // Fetch the 6 most recent posts from followed users
         $posts = Post::whereIn('user_id', $followingUserIds)
             ->orderBy('created_at', 'desc')  // Order by the most recent
-            ->take(6)  // Limit to 6 posts
             ->get();
 
         // Return the posts to the view (or as JSON for an API)
