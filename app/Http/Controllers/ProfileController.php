@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $followersCount = Follower::where('user_id', $userId)->count();
 
         // Atgriež datus uz skatu
-        return view('profile.show', compact('user', 'posts', 'followersCount'));
+        return view('user.profile', compact('user', 'posts', 'followersCount'));
     }
 }
 
