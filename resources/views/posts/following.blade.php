@@ -12,54 +12,19 @@
     <h2 style="text-align: center;">Following posts</h2>
 
     <div class="browse-content-slots">
-        <!-- Post slots -->
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 1</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 2</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 3</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 4</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 5</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 6</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 7</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 8</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 9</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 10</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 11</div>
-        </div>
-        <div class="browse-slot">
-            <div class="browse-slot-image"></div>
-            <div class="browse-slot-text">Post 12</div>
-        </div>
+        @if($posts->isEmpty())
+            <p>No posts from users you follow.</p>
+        @else
+            @foreach($posts as $post)
+                <div class="browse-slot">
+                    <a href="{{ route('posts.show', $post->id) }}" class="slot-link">
+                        <div class="browse-slot-image">
+                            <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image">
+                        </div>
+                        <div class="browse-slot-text">{{ $post->title }}</div>
+                    </a>
+                </div>
+            @endforeach
+        @endif
     </div>
 @endsection
