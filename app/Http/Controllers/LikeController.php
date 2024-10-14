@@ -14,7 +14,7 @@ class LikeController extends Controller {
         $likeExists = Like::where('post_id', $postId)->where('user_id', $userId)->exists();
 
         if ($likeExists) {
-            return response()->json(['message' => 'Jūs jau esat novērtējis šo publikāciju.'], 400);
+            return back()->with('error', 'Jūs jau esat novērtējis šo publikāciju.');
         }
 
         // Ievieto jaunu ierakstu par like
@@ -23,7 +23,7 @@ class LikeController extends Controller {
             'user_id' => $userId,
         ]);
 
-        return response()->json(['message' => 'Jūs veiksmīgi novērtējāt publikāciju.'], 200);
+        return back()->with('success', 'Jūs veiksmīgi novērtējāt publikāciju.');
     }
 
     // Funkcija, kas noņem vērtējumu publikācijai
@@ -34,12 +34,12 @@ class LikeController extends Controller {
         $like = Like::where('post_id', $postId)->where('user_id', $userId)->first();
 
         if (!$like) {
-            return response()->json(['message' => 'Jūs neesat novērtējis šo publikāciju.'], 400);
+            return back()->with('error', 'Jūs neesat novērtējis šo publikāciju.');
         }
 
         // Dzēš ierakstu par like
         $like->delete();
 
-        return response()->json(['message' => 'Jūs veiksmīgi noņēmāt savu vērtējumu no publikācijas.'], 200);
+        return back()->with('success', 'Jūs veiksmīgi noņēmāt savu vērtējumu no publikācijas.');
     }
 }
