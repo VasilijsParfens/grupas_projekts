@@ -22,17 +22,8 @@ class ProfileController extends Controller
         // Iegūst sekotāju skaitu
         $followersCount = Follower::where('user_id', $userId)->count();
 
-        // Sagatavo datus, kurus parādīs
-        $userInfo = [
-            'name' => $user->name,
-            'profile_picture' => $user->profile_picture,
-            'registration_date' => $user->created_at->format('Y-m-d'), // Formatē datumu
-            'followers_count' => $followersCount,
-            'posts' => $posts,
-        ];
-
-        // Atgriež datus, varat izmantot skatu vai atgriezt kā JSON
-        return response()->json($userInfo);
+        // Atgriež datus uz skatu
+        return view('profile.show', compact('user', 'posts', 'followersCount'));
     }
 }
 
