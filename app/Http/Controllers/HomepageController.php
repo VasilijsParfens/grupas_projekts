@@ -31,7 +31,7 @@ class HomepageController extends Controller
         $authUser = Auth::user();
 
         // Fetch IDs of users that the authenticated user is following
-        $followingUserIds = $authUser->follows()->pluck('user_id');
+        $followingUserIds = $authUser->following()->pluck('user_id');
 
         // Fetch the 6 most recent posts from followed users
         $followingPosts = Post::whereIn('user_id', $followingUserIds)
@@ -40,7 +40,7 @@ class HomepageController extends Controller
             ->get();
         
         // Use compact to pass the posts to the view
-        return view('posts.homepage', compact('newestPosts', 'popularPosts', 'trendingPosts', '$followingPosts'));
+        return view('posts.homepage', compact('newestPosts', 'popularPosts', 'trendingPosts', 'followingPosts'));
     }
 
     
