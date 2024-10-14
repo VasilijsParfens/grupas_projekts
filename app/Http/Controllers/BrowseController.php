@@ -40,7 +40,7 @@ class BrowseController extends Controller
             ->get();
 
         // Return the posts to the view (or as JSON for an API)
-        return view('posts.following', ['posts' => $posts]);
+        return view('posts.following', compact('posts'));
     }
 
     // Publikācijas, kas ir tendencēs pēc vērtējumiem un datuma
