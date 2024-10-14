@@ -28,7 +28,20 @@ class BrowseController extends Controller
     // Publikācijas no lietotājiem, kurus abonē autentificētais lietotājs
     public function followingPosts()
     {
-        // Kodu raksti šeit
+        // Get the authenticated user
+        $authUser = Auth::user();
+
+        // Fetch IDs of users that the authenticated user is following
+        $followingUserIds = $authUser->follows()->pluck('user_id');
+
+        // Fetch the 6 most recent posts from followed users
+        $posts = Post::whereIn('user_id', $followingUserIds)
+            ->orderBy('created_at', 'desc')  // Order by the most recent
+            ->take(6)  // Limit to 6 posts
+            ->get();
+
+        // Return the posts to the view (or as JSON for an API)
+        return view('posts.following', ['posts' => $posts]);
     }
 
     // Publikācijas, kas ir tendencēs pēc vērtējumiem un datuma
