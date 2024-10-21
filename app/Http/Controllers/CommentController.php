@@ -27,7 +27,7 @@ class CommentController extends Controller
         $comment->body = $request->input('body');
         $comment->save();
 
-        return response()->json(['message' => 'Comment created successfully!', 'comment' => $comment]);
+        return back()->with('message', 'Comment created successfully!');
     }
 
     // Rediģēt komentāru publikācijai (tikai komentāra autoram)
@@ -43,14 +43,14 @@ class CommentController extends Controller
 
         // Check if the authenticated user is the author of the comment
         if (Auth::id() !== $comment->user_id) {
-            return response()->json(['message' => 'You are not authorized to update this comment.'], 403);
+            return back()->with('error', 'You are not authorized to update this comment.');
         }
 
         // Update the comment
         $comment->body = $request->input('body');
         $comment->save();
 
-        return response()->json(['message' => 'Comment updated successfully!', 'comment' => $comment]);
+        return back()->with('message', 'Comment updated successfully!');
     }
 
     // Izdzēst komentāru publikācijai (tikai komentāra autoram vai administratoram)
@@ -61,14 +61,15 @@ class CommentController extends Controller
 
         // Check if the authenticated user is either the author or an admin
         if (Auth::id() !== $comment->user_id && !Auth::user()->is_admin) {
-            return response()->json(['message' => 'You are not authorized to delete this comment.'], 403);
+            return back()->with('error', 'You are not authorized to delete this comment.');
         }
 
         // Delete the comment
         $comment->delete();
 
-        return response()->json(['message' => 'Comment deleted successfully!']);
+        return back()->with('message', 'Comment deleted successfully!');
     }
 }
+
 
 
