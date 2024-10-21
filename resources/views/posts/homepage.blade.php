@@ -12,6 +12,13 @@
                                 <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image">
                             </div>
                             <div class="homepage-slot-text">{{ $post->title }}</div>
+                            <div class="homepage-slot-info">
+                                <div class="homepage-slot-author">{{ $post->user->name }}</div>
+                                <div class="homepage-slot-details">
+                                    <span class="homepage-slot-likes">{{ $post->likes_count }} ❤</span>
+                                    <span class="homepage-slot-date">{{ $post->created_at->format('Y-m-d') }}</span>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 @endforeach
@@ -32,6 +39,13 @@
                                 <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image">
                             </div>
                             <div class="homepage-slot-text">{{ $post->title }}</div>
+                            <div class="homepage-slot-info">
+                                <div class="homepage-slot-author">{{ $post->user->name }}</div>
+                                <div class="homepage-slot-details">
+                                    <span class="homepage-slot-likes">{{ $post->likes_count }} ❤</span>
+                                    <span class="homepage-slot-date">{{ $post->created_at->format('Y-m-d') }}</span>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 @endforeach
@@ -52,6 +66,13 @@
                                 <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image">
                             </div>
                             <div class="homepage-slot-text">{{ $post->title }}</div>
+                            <div class="homepage-slot-info">
+                                <div class="homepage-slot-author">{{ $post->user->name }}</div>
+                                <div class="homepage-slot-details">
+                                    <span class="homepage-slot-likes">{{ $post->likes_count }} ❤</span>
+                                    <span class="homepage-slot-date">{{ $post->created_at->format('Y-m-d') }}</span>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 @endforeach
@@ -73,6 +94,13 @@
                                 <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image">
                             </div>
                             <div class="homepage-slot-text">{{ $post->title }}</div>
+                            <div class="homepage-slot-info">
+                                <div class="homepage-slot-author">{{ $post->user->name }}</div>
+                                <div class="homepage-slot-details">
+                                    <span class="homepage-slot-likes">{{ $post->likes_count }} ❤</span>
+                                    <span class="homepage-slot-date">{{ $post->created_at->format('Y-m-d') }}</span>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 @endforeach
