@@ -21,6 +21,13 @@
                             <img src="{{ asset($post->cover_image ? 'cover_images/' . $post->cover_image : 'assets/noimage.png') }}" alt="{{ $post->title }}" class="post-image">
                         </div>
                         <div class="browse-slot-text">{{ $post->title }}</div>
+                        <div class="browse-slot-info">
+                            <div class="browse-slot-author">{{ $post->user->name }}</div>
+                            <div class="browse-slot-details">
+                                <span class="browse-slot-likes">{{ $post->likes_count }} ❤</span>
+                                <span class="browse-slot-date">{{ $post->created_at->format('Y-m-d') }}</span>
+                            </div>
+                        </div>
                     </a>
                 </div>
             @endforeach
