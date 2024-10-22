@@ -10,7 +10,9 @@
                 <div class="post-page-profile-info">
                     <img src="{{ asset($author['profile_picture'] ? 'profile_pictures/' . $author['profile_picture'] : 'assets/noimage.png') }}" alt="{{ $author['name'] }}" class="profile-image">
                     <div class="profile-details">
-                        <h2>{{ $author->name }}</h2>
+                        <h2>
+                            <a href="{{ route('profile.show', $author->id) }}">{{ $author->name }}</a>
+                        </h2>
                         <div class="post-page-metadata">
                             <span>{{ $likesCount }} Likes</span>
                             <span>{{ $commentsCount }} comments</span>
