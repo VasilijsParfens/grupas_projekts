@@ -13,13 +13,15 @@
 </head>
 <body>
     <div class="top-row">
-        <a href="/"><img src="{{ asset('assets/logo.png') }}" alt="Logo" class="logo"></a>
+        <a href="/"><img id="logo" src="{{ asset('assets/logo.png') }}" alt="Logo" class="logo"></a>
         <div class="search-container">
-            <form action="#" method="GET">
-                <input type="text" name="query" placeholder="Search posts..." required>
+            <form action="{{ route('search') }}" method="GET" style="text-align: center;">
+                <input type="text" name="keywords" placeholder="Search posts..." required>
             </form>
         </div>
         <div class="top-row-right">
+            <!-- Theme Switch Button -->
+            <i class="fa-solid fa-moon dark-theme-switch" id="darkThemeSwitch" style="margin-right: 30px; font-size: 28px"></i>
             @auth
                 <a href="/posts/create" title="Post" class="create-post-icon">
                     <i class="fa-solid fa-plus"></i>
@@ -55,27 +57,48 @@
         </div>
     </div>
     @yield('content')
-    <script>
-        const darkThemeSwitch = document.getElementById('darkThemeSwitch');
-        const body = document.body;
-
-        darkThemeSwitch.addEventListener('click', () => {
-            body.classList.toggle('dark-theme');
-			const logo = document.getElementById('logo');
-            if (document.body.classList.contains('dark-theme')) {
-                logo.src = 'logo-dark.png'; // Change to dark theme logo
-				darkThemeSwitch.src = 'light-theme-icon.png';
-            } else {
-                logo.src = 'logo.png'; // Change back to light theme logo
-				darkThemeSwitch.src = 'dark-theme-icon.png';
-            }
-        });
-    </script>
-
-    <script>
-        function toggleEditForm(commentId) {
-            const editForm = document.querySelector(`#comment-${commentId} .post-page-edit-comment-form`);
-            editForm.style.display = (editForm.style.display === 'block') ? 'none' : 'block';
-        }
-    </script>
 </body>
+<script>
+    // Check for saved theme preference on page load
+    window.onload = function() {
+        const savedTheme = localStorage.getItem('theme');
+        const theme_picker = document.getElementById('darkThemeSwitch');
+        const logo = document.getElementById('logo');
+
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            logo.src = '{{ asset('assets/logo-dark.png') }}'; // Set dark theme logo
+            theme_picker.classList.remove('fa-moon'); // Remove moon icon
+            theme_picker.classList.add('fa-sun'); // Add sun icon
+        }
+    };
+
+    // Toggle dark theme and logo
+    const theme_picker = document.getElementById('darkThemeSwitch');
+    theme_picker.addEventListener('click', function() {
+        document.body.classList.toggle('dark-theme');
+        const logo = document.getElementById('logo');
+
+        // Change theme icons based on the current theme
+        if (document.body.classList.contains('dark-theme')) {
+            logo.src = '{{ asset('assets/logo-dark.png') }}'; // Change to dark theme logo
+            theme_picker.classList.remove('fa-moon'); // Remove moon icon
+            theme_picker.classList.add('fa-sun'); // Add sun icon
+            localStorage.setItem('theme', 'dark'); // Save dark theme preference
+        } else {
+            logo.src = '{{ asset('assets/logo.png') }}'; // Change back to light theme logo
+            theme_picker.classList.remove('fa-sun'); // Remove sun icon
+            theme_picker.classList.add('fa-moon'); // Add moon icon
+            localStorage.setItem('theme', 'light'); // Save light theme preference
+        }
+    });
+</script>
+
+
+<script>
+    function toggleEditForm(commentId) {
+        const editForm = document.querySelector(`#comment-${commentId} .post-page-edit-comment-form`);
+        editForm.style.display = (editForm.style.display === 'block') ? 'none' : 'block';
+    }
+</script>
+</html>
