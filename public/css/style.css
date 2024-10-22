@@ -1,14 +1,14 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Light gray background */
-    transition: background-color 0.3s, color 0.3s;
     font-family: "Poppins";
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
 }
 
 a{
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
 }
 
 input{
@@ -23,8 +23,9 @@ input::placeholder{
     top: 0;
     left: 0;
     right: 0;
-    background-color: #95a1b0; /* Slightly darker and blue-ish */
-    color: white;
+    background-color: var(--primary-color); /* Slightly darker and blue-ish */
+    color: var(--secondary-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,7 +41,7 @@ input::placeholder{
 .search-panel {
     width: 40%;
     padding: 5px;
-    background-color: white;
+    background-color: var(--secondary-color);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -52,12 +53,29 @@ input::placeholder{
     outline: none;
     padding: 5px;
     font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
 }
 
 .top-row-right {
     margin-right: 20px;
     display: flex;
     align-items: center;
+}
+
+/* Custom Scrollbar */
+.scrollable-container::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--slot-color);
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: var(--button-hover-color);
+    border-radius: 4px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--button-bg-color);
 }
 
 .login{
@@ -89,20 +107,34 @@ input::placeholder{
     margin-right: auto;
 }
 
+.homepage-scrollable-container{
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+    height: calc(100vh - 90px);
+    margin-top: 10px; /* Space for the fixed top row */
+}
+
 .homepage-wide-container {
-    background-color: white;
+    background-color: var(--secondary-color);
     margin-bottom: 20px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 300px; /* Fixed height for content blocks */
-    transition: background-color 0.3s, color 0.3s;
+    height: 375px; /* Fixed height for content blocks */
+    transition: all 0.3s ease;
+}
+
+.wide-container:hover {
+    background-color: var(--file-hover-color);
 }
 
 .homepage-block-title {
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 20px;
+    color: var(--text-color);
 }
 
 .homepage-content-slots {
@@ -115,11 +147,16 @@ input::placeholder{
 
 .homepage-slot {
     width: 14%;
-    background-color: #ddd;
+    background-color: var(--slot-color);
     border-radius: 5px;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
+}
+
+.homepage-slot:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
 .homepage-slot-image {
@@ -144,6 +181,7 @@ input::placeholder{
 
 
 .homepage-slot-text {
+    color: var(--text-color);
     margin-top: 5px;
     display: block; /* Ensures it behaves like a block element */
     max-height: 3em; /* Adjust this value based on desired height */
@@ -153,43 +191,36 @@ input::placeholder{
     font-size: 1em; /* Adjust font size as needed */
 }
 
-.homepage-dark-theme {
-    background-color: #1e1e1e;
-    color: #f0f0f0;
+.homepage-slot-info {
+    margin-top: 5px;
+    font-size: 12px;
+    color: var(--text-color);
 }
 
-.homepage-dark-theme .homepage-top-row {
-    background-color: #333;
+.homepage-slot-author {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Adjust if needed */
+    text-align: left;
 }
 
-.homepage-dark-theme .homepage-wide-container {
-    background-color: #2c2c2c;
+.homepage-slot-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
 }
 
-.homepage-dark-theme .homepage-search-panel {
-    background-color: #444;
-    color: #f0f0f0;
-}
-
-.homepage-dark-theme .homepage-search-panel input {
-    background-color: #444;
-    color: #f0f0f0;
-}
-
-.homepage-dark-theme .homepage-slot {
-    background-color: #444;
-}
-
-.homepage-dark-theme .homepage-slot-text {
-    color: #f0f0f0;
+.homepage-slot-likes, .homepage-slot-date {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 5px;
 }
 
 
 /*Register page*/
-
-.register-container{
-    margin-top: 50px;
-}
 
 .register-container label{
     text-align: center;
@@ -204,7 +235,7 @@ input::placeholder{
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 50px;
 }
 
 .reg-input{
@@ -360,23 +391,6 @@ tr:hover {
     justify-content: center;
 }
 
-/*Profile styles*/
-.dark-theme .profile-section {
-    background-color: #1e1e1e;
-}
-
-.dark-theme .profile-posts {
-    background-color: #2c2c2c;
-}
-
-.dark-theme .profile-slot {
-    background-color: #444;
-}
-
-.dark-theme .profile-slot-text {
-    color: #f0f0f0;
-}
-
 /* Profile Section */
 .profile-section {
     display: flex;
@@ -385,22 +399,36 @@ tr:hover {
     margin-top: 40px;
     transition: all 0.3s ease;
 }
+
+.profile-section:hover {
+    transform: scale(1.03);
+}
+
 .profile-section img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     background-color: #ccc;
     margin-right: 20px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s;
 }
+
+.profile-section img:hover {
+    transform: scale(1.1);
+}
+
 .profile-info {
     text-align: left;
 }
 .profile-info h2 {
     margin: 0;
+    font-weight: 600;
 }
 .profile-info p {
     margin: 5px 0;
     color: #666;
+    color: var(--meta-text-color);
 }
 .profile-info .profile-stats {
     display: flex;
@@ -420,6 +448,8 @@ tr:hover {
 .profile-posts h3 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 /* Updated posts layout for 3 posts per row and scrollable rows */
@@ -434,11 +464,16 @@ tr:hover {
 
 .profile-slot {
     width: 30%; /* 3 posts per row */
-    background-color: #ddd;
+    background-color: var(--slot-color);
     border-radius: 5px;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
+}
+
+.profile-slot:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
 .profile-slot-image {
@@ -469,6 +504,7 @@ tr:hover {
     text-overflow: ellipsis; /* Adds ellipsis for overflowing text */
     white-space: nowrap; /* Prevents text from wrapping to a new line */
     font-size: 1em; /* Adjust font size as needed */
+    color: var(--meta-text-color);
 }
 
 .dark-theme-switch {
@@ -489,41 +525,59 @@ tr:hover {
 
 .browse-tab {
     padding: 10px 20px;
-    background-color: #d0d0d0;
-    border-radius: 8px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.browse-tab:hover {
+    background-color: var(--button-hover-color);
+    transform: scale(1.05);
 }
 
 .browse-tab.browse-active {
-    background-color: #888;
+    background-color: var(--button-hover-color);
 }
 
 /* Post Grid with Slots */
 .browse-content-slots {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin: 0 auto;
-    width: 90%; /* Adjust width to fit more slots */
+    max-height: 630px;
+    overflow-y: auto;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    transition: background-color 0.3s;
 }
 
 .browse-slot {
-    width: 15%; /* Adjust for 6 posts per row */
-    background-color: #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    box-sizing: border-box;
-    text-align: center;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
+    width: 15%;
+    background-color: var(--slot-color);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.browse-slot:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
 .browse-slot-image {
     width: 100%;
-    padding-bottom: 100%; /* Maintains aspect ratio */
+    height: 0;
+    padding-bottom: 100%;
+    background-color: #bbb;
+    border-radius: 8px;
     position: relative;
 }
 
@@ -540,6 +594,7 @@ tr:hover {
 
 
 .browse-slot-text {
+    color: var(--text-color);
     margin-top: 5px;
     display: block; /* Ensures it behaves like a block element */
     max-height: 3em; /* Adjust this value based on desired height */
@@ -549,7 +604,32 @@ tr:hover {
     font-size: 1em; /* Adjust font size as needed */
 }
 
+.browse-slot-info {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-color);
+}
 
+.browse-slot-author {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Adjust if needed */
+}
+
+.browse-slot-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+}
+
+.browse-slot-likes, .browse-slot-date {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 5px;
+}
 /*Post page*/
 
 .post-page-container {
@@ -557,9 +637,10 @@ tr:hover {
     width: 80%;
     max-width: 1200px;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 100px auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    transition: all 0.3s ease;
 }
 
 .post-page-top-section {
@@ -573,6 +654,14 @@ tr:hover {
     height: 300px;
     background-color: #e0e0e0;
     margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0px 4px var(--shadow-color);
+}
+
+.post-page-cover-image:hover {
+    transition: all 0.3s ease;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
 .post-page-details {
@@ -583,6 +672,15 @@ tr:hover {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.post-page-profile-info:hover {
+    background-color: var(--background-color);
+    transform: scale(1.02);
 }
 
 .post-page-profile-info img {
@@ -590,6 +688,7 @@ tr:hover {
     width: 60px;
     height: 60px;
     margin-right: 20px;
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .post-page-metadata {
@@ -613,34 +712,54 @@ tr:hover {
     border: none;
     padding: 10px 20px;
     font-size: 14px;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.post-page-like-button:hover {
+    background-color: var(--button-hover-color);
+    transform: scale(1.05);
 }
 
 .post-page-files {
-    background-color: var(--background-color);
+    background-color: var(--slot-color);
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 20px;
     max-height: 150px;
     overflow-y: scroll;
     color: var(--text-color);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
 .post-page-files .post-page-file {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.post-page-files .post-page-file:hover {
+    background-color: var(--file-hover-color);
+}
+
+.post-page-files .post-page-file img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
 
 .post-page-comments {
-    margin-top: 20px;
-    background-color: var(--background-color);
+    background-color: var(--slot-color);
     padding: 15px;
-    border-radius: 5px;
-    max-height: 300px;
-    overflow-y: auto;
+    border-radius: 10px;
+    max-height: 500px;
+    overflow-y: scroll;
     color: var(--text-color);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
 .post-page-comment {
@@ -662,6 +781,10 @@ tr:hover {
     padding: 10px;
     border-radius: 5px;
     color: var(--text-color);
+}
+
+.post-page-comment-text:hover {
+    background-color: var(--file-hover-color);
 }
 
 .post-page-comment-actions {
@@ -779,9 +902,37 @@ tr:hover {
 :root {
     --background-color: #f0f0f0;
     --text-color: #000;
-    --primary-color: #4a90e2;
+    --primary-color: #74a9e8;
     --secondary-color: #fff;
     --meta-text-color: gray;
     --button-bg-color: #007bff;
     --button-text-color: white;
+    --button-hover-color: #0056b3;
+    --slot-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --file-hover-color: #f0f0f0;
+}
+
+/* Ensure icons appear properly in dark theme */
+.dark-theme .dark-theme-switch {
+    color: white; /* White color for the dark theme */
+}
+
+.dark-theme-switch {
+    color: black; /* Black color for the light theme */
+}
+
+/* Dark theme variables */
+.dark-theme {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --primary-color: #1f1f1f;
+    --secondary-color: #1c1c1c;
+    --meta-text-color: #bbbbbb;
+    --button-bg-color: #ff8400;
+    --button-text-color: white;
+    --button-hover-color: #b35c00;
+    --slot-color: #444;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --file-hover-color: #313131;
 }
