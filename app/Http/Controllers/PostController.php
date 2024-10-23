@@ -146,7 +146,7 @@ class PostController extends Controller
     // Delete the post (this will also delete associated files due to cascading in DB)
     $post->delete();
 
-    return redirect()->back();
+    return redirect('/')->with('success', 'Post deleted successfully.');
 }
 
 private function deleteDirectory($dir)
