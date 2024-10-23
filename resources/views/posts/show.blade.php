@@ -33,6 +33,18 @@
                         </button>
                     </form>
                 @endif
+
+                <!-- Edit and Delete Buttons Visible Only to Post Author -->
+                @if(Auth::check() && Auth::id() === $author->id)
+                    <div class="post-page-author-actions" style="margin-top: 20px">
+                        <a href="{{ route('posts.edit', $post->id) }}" class="post-page-edit-button">Edit Post</a>
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="post-page-delete-button" onclick="return confirm('Are you sure you want to delete this post?')">Delete Post</button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
 
