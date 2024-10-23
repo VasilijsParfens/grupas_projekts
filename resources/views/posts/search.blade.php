@@ -3,7 +3,7 @@
 @section('content')
     <h1 style="margin-left: auto; margin-right: auto; text-align: center">Search Results</h1>
     @if($posts->isEmpty())
-        <p>No results found for "{{ $query }}".</p>
+        <p>No results found".</p>
     @else
     <div class="browse-content-slots">
         @if(count($posts) > 0)
