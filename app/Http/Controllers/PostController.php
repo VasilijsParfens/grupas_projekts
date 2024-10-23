@@ -146,6 +146,12 @@ class PostController extends Controller
     // Delete the post (this will also delete associated files due to cascading in DB)
     $post->delete();
 
+    // Determine redirection based on the route name
+    if (request()->route()->getName() === 'admin.posts.delete') {
+        return redirect()->route('admin.posts')->with('success', 'Post deleted successfully.');
+    }
+
+    // Redirect regular users to the main page
     return redirect('/')->with('success', 'Post deleted successfully.');
 }
 
