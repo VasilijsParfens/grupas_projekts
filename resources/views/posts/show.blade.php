@@ -73,7 +73,7 @@
                     <button type="submit">Post Comment</button>
                 </form>
             </div>
-@endif
+        @endif
 
         <!-- Display Comments Section -->
         <div class="post-page-comments">
