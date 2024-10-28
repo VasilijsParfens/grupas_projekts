@@ -24,8 +24,8 @@
                     {{ $post->description }}
                 </div>
 
-                <!-- Like Button Visible to Authenticated Users Only -->
-                @if(Auth::check())
+                <!-- Like Button Visible to Authenticated Users Only and Not the Post Author -->
+                @if(Auth::check() && Auth::id() !== $author->id)
                     <form action="{{ $isLikedByUser ? route('posts.unlike', $post->id) : route('posts.like', $post->id) }}" method="POST" class="post-page-like-form">
                         @csrf
                         <button type="submit" class="post-page-like-button">
@@ -33,6 +33,7 @@
                         </button>
                     </form>
                 @endif
+
 
                 <!-- Edit and Delete Buttons Visible Only to Post Author -->
                 @if(Auth::check() && Auth::id() === $author->id)
@@ -67,11 +68,12 @@
                 <h3>Add a Comment:</h3>
                 <form id="commentForm" action="{{ route('comments.store', $post->id) }}" method="POST" class="post-page-comment-form-container">
                     @csrf
+                    <input type="text" name="honeypot" style="display:none;"> <!-- Honeypot field -->
                     <textarea name="body" rows="3" placeholder="Write your comment..." required></textarea>
                     <button type="submit">Post Comment</button>
                 </form>
             </div>
-        @endif
+@endif
 
         <!-- Display Comments Section -->
         <div class="post-page-comments">
