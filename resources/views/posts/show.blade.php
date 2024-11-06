@@ -73,7 +73,7 @@
                     <button type="submit">Post Comment</button>
                 </form>
             </div>
-        @endif
+@endif
 
         <!-- Display Comments Section -->
         <div class="post-page-comments">
@@ -86,7 +86,7 @@
                         <div class="post-page-comment-actions">
                             @if(Auth::id() === $comment->user_id) <!-- Check if the logged-in user is the author -->
                                 <button type="button" class="post-page-edit-button" onclick="toggleEditForm({{ $comment->id }})">Edit</button>
-                                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;">
+                                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this comment?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="post-page-delete-button">Delete</button>
