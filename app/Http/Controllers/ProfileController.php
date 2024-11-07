@@ -27,7 +27,7 @@ class ProfileController extends Controller
         return view('user.profile', compact('user', 'posts', 'followersCount'));
     }
 
-    // Edit profile information (including profile picture)
+    // Edit profile information
     public function editProfile(Request $request)
     {
         // Validate input
