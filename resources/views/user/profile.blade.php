@@ -25,6 +25,12 @@
             @elseif (Auth::guest())
                 <p>Please <a href="{{ route('login') }}">login</a> to follow or unfollow users.</p>
             @endif
+
+            @if (Auth::check() && Auth::id() === $user['id']) <!-- Only show Edit Profile if viewing own profile -->
+                <div class="profile-actions">
+                    <a href="{{ route('profile.edit') }}" class="btn btn-secondary">Edit Profile</a>
+                </div>
+            @endif
         </div>
     </div>
 </section>
