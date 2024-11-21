@@ -139,8 +139,9 @@ input::placeholder{
 
 .homepage-content-slots {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping if there are fewer items */
+    gap: 3%; /* Space between items */
+    align-content: flex-start; /* Aligns slots to the top */
     padding: 10px;
     height: calc(100% - 30px); /* Adjust for padding and title */
 }
@@ -235,7 +236,8 @@ input::placeholder{
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .reg-input{
@@ -267,7 +269,7 @@ input[type="file"] {
 
 /*Login page*/
 .login-container{
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 .login-container label{
@@ -283,7 +285,7 @@ input[type="file"] {
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
 }
 
 .log-input{
@@ -456,10 +458,16 @@ tr:hover {
 .profile-content-slots {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    overflow-y: scroll;
-    max-height: 600px; /* Limit the height of the post section */
+    align-content: flex-start;
+    gap: 20px 5%;
+    padding: 20px;
+    margin-top: 20px;
+    max-height: 630px;
+    overflow-y: auto;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    transition: background-color 0.3s;
 }
 
 .profile-slot {
@@ -546,10 +554,10 @@ tr:hover {
 .browse-content-slots {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    align-content: flex-start;
+    gap: 20px 2%;
     padding: 20px;
     margin-top: 20px;
-    justify-content: space-between;
     max-height: 630px;
     overflow-y: auto;
     background-color: var(--secondary-color);
@@ -884,8 +892,9 @@ tr:hover {
     color: var(--button-text-color); /* Use white text color */
     background-color: var(--button-bg-color); /* Set background color */
     border: none; /* Remove borders */
-    border-radius: 5px; /* Add rounded corners */
-    padding: 5px 10px; /* Add some padding for better appearance */
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 25px;
     transition: background-color 0.3s; /* Add transition for hover effect */
 }
 
@@ -893,6 +902,9 @@ tr:hover {
     color: white; /* Text color */
     background-color: red; /* Red background */
     margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 25px;
 }
 
 .post-page-delete-button:hover {
