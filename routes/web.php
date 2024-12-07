@@ -36,7 +36,6 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 Route::group(['middleware' => AdminMiddleware::class], function () {
     Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.users');
-    Route::get('/export-users-xlsx', [AdminController::class, 'exportUsersToXLSX'])->name('export-users-xlsx');
     Route::get('/admin/posts', [AdminController::class, 'showPosts'])->name('admin.posts');
     Route::get('/admin/comments', [AdminController::class, 'showComments'])->name('admin.comments');
     Route::get('/admin/stats', [AdminController::class, 'showStats'])->name('admin.stats');
