@@ -6,6 +6,7 @@
         <a href="{{ route('admin.posts') }}" class="adm-button">Posts</a>
         <a href="{{ route('admin.comments') }}" class="adm-button">Comments</a>
         <a href="{{ route('admin.stats') }}" class="adm-button">Stats</a>
+        <a href="{{ route('export-users-xlsx') }}" class="btn btn-primary">Export Users to XLSX</a>
     </div>
     <h1 style="margin-left: auto; margin-right: auto; text-align: center;">User List</h1>
     <div class="table-container">
