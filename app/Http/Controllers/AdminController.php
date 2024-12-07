@@ -6,32 +6,58 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
-use App\Models\Likes;
-use App\Models\Files;
+use App\Models\Like;
+use App\Models\File;
+
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Exports\UsersExport;
 
 class AdminController extends Controller
 {
     // Izņemt visas publikācijas no datubāzes
     public function showPosts(Request $request)
     {
-        // Kodu raksti šeit
+        // Iegūstam visas publikācijas no datubāzes
+        $posts = Post::all();
+    
+        // Atgriežam skatu un nododam tajā publikācijas
+        return view('admin.posts', compact('posts'));
     }
 
     // Izņemt visus lietotājus no datubāzes
     public function showUsers(Request $request)
     {
-        // Kodu raksti šeit
+        // Iegūstam visas lietotajus no datubāzes
+        $users = User::all();
+        
+        return view('admin.users', compact('users'));
     }
 
     // Izņemt visus komentārus no datubāzes
     public function showComments()
     {
-        // Kodu raksti šeit
+        // Iegūstam visas komentārus no datubāzes
+        $comments = Comment::all();
+        
+        return view('admin.comments', compact('comments'));
     }
 
     // Statistikas apskate (publikāciju, lietotāju, komentāru, vērtējumu, failu skaits)
     public function showStats()
     {
-        // Kodu raksti šeit
+        $totalComments = Comment::count();
+        $totalFiles = File::count();
+        $totalLikes = Like::count();
+        $totalPosts = Post::count();
+        $totalUsers = User::count();
+        
+        return view('admin.stats', compact('totalComments', 'totalFiles', 'totalLikes', 'totalPosts', 'totalUsers'));
     }
+
+    public function exportUsersToXLSX(Request $request)
+    {
+        return Excel::download(new UsersExport, 'users_export.xlsx');
+    }
+
 }
