@@ -60,3 +60,5 @@ Route::post('/unfollow/{followedUserId}', [FollowerController::class, 'unfollow'
 Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware(CheckPostAuthor::class);
 Route::put('posts/{id}', [PostController::class, 'update'])->name('posts.update')->middleware(CheckPostAuthor::class);
 Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware(CheckPostAuthor::class);
+
+Route::view('/faq', 'faq');
