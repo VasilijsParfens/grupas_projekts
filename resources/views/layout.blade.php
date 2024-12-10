@@ -21,6 +21,9 @@
         </div>
         <div class="top-row-right">
             <!-- Theme Switch Button -->
+            <a href="/faq">
+                <i class="fa-solid fa-question" style="color: #000000; margin-right: 30px; font-size: 28px;"></i>
+            </a>
             <i class="fa-solid fa-moon dark-theme-switch" id="darkThemeSwitch" style="margin-right: 30px; font-size: 28px"></i>
             @auth
                 <a href="/posts/create" title="Post" class="create-post-icon">
